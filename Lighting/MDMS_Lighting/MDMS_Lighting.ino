@@ -1,21 +1,22 @@
+
 #define MY_PARENT_NODE_ID AUTO
+#define MY_NODE_ID AUTO
 #define MY_REPEATER_FEATURE // Enable repeater functionality for this node
 
 // Flash options
 #define MY_OTA_FIRMWARE_FEATURE
 #define MY_OTA_FLASH_SS 7
-#define MY_OTA_FLASH_JDECID 0x2013
+#define MY_OTA_FLASH_JDECID 0x2020
 
 //#define MY_SIGNING_SOFT
 //#define MY_SIGNING_SOFT_RANDOMSEED_PIN 7
 #define MY_SIGNING_ATSHA204
 #define MY_SIGNING_ATSHA204_PIN 16 // A2
 
-//#define MY_SIGNING_REQUEST_SIGNATURES
 
 // Enable debug prints to serial monitor
 #define MY_DEBUG 
-#define DEBUG
+//#define DEBUG
 
 // Enable and select radio type attached
 #define MY_RADIO_NRF24
@@ -23,6 +24,8 @@
 
 #include <SPI.h>
 #include <MySensors.h>
+
+#define SPIFLASH_BLOCKERASE_32K   0xD8
 
 #define LIGHT_PIN                3    // Arduino Digital I/O pin number for first relay
 #define LIGHT_ID                 1    // State in eprom & MySensor node sensor
@@ -89,7 +92,7 @@ void setup() {
 void presentation()  
 {   
   // Node info
-  sendSketchInfo("Lighting", "1.0");
+  sendSketchInfo("Lighting", "1.1");
   // Light
   present(LIGHT_ID, S_LIGHT, "Light relay");
   // Temp
@@ -141,7 +144,6 @@ float ReadTmp(){
     amostra[i] = analogRead(TEMP_PIN);    
     delay(10);
   }
-  
   Temp_ADC = 0;
   for (i=0; i< TEMP_Average; i++) {
     Temp_ADC += amostra[i];
@@ -233,4 +235,5 @@ void receive(const MyMessage &message) {
    // TODO Send presentation to button nodes
    // TODO Command button key
 }
+
 
