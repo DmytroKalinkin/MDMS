@@ -483,9 +483,9 @@ void loop() {
      Serial.println(millis());
   #endif
 
-  wait(SEND_FREQUENCY);
- // if (smartSleep(SEND_FREQUENCY) == -1){
-//    // Device Info
-    //SendDevInfo();
-  //}  
+  //wait(SEND_FREQUENCY);
+  if (smartSleep(SEND_FREQUENCY) == -1){
+    // Device Info
+    SendDevInfo();
+  }  
 }
