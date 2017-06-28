@@ -12,7 +12,7 @@
 #define SENS_POW_TIME (500ul)
 
 #define SensBMP180 // 21% -26%
-//#define SensSI7021 // 18% - 24%
+#define SensSI7021 // 18% - 24%
 #define SensBH1750 // 13% - 21%
 //#define SensDHT // 18% - 22%
 #define SensDS18B20 // 21% - 20%
@@ -70,7 +70,7 @@
 #define SKETCH_MAJOR_VER "1"
 #define SKETCH_MINOR_VER "3"
 
-unsigned long SEND_FREQUENCY = (10*1000ul); // Minimum time between send (in milliseconds). We don't wnat to spam the gateway. 
+unsigned long SEND_FREQUENCY = (60*1000ul); // Minimum time between send (in milliseconds). We don't wnat to spam the gateway. 
 
 #define POWER_PIN 6
 #define INIT_PIN A4
@@ -153,7 +153,7 @@ void before(){
 
   // Init adress from pin
   pinMode(INIT_PIN, INPUT); 
-  if (analogRead(INIT_PIN) < 5){    
+  if (analogRead(INIT_PIN) == 0){    
     #ifdef DEBUG
       Serial.println("Init adress");
     #endif
