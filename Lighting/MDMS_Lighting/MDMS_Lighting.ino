@@ -1,7 +1,7 @@
 
 #define MY_PARENT_NODE_ID AUTO
 #define MY_NODE_ID AUTO
-#define MY_REPEATER_FEATURE // Enable repeater functionality for this node
+//#define MY_REPEATER_FEATURE // Enable repeater functionality for this node
 
 // Flash options
 #define MY_OTA_FIRMWARE_FEATURE
@@ -92,7 +92,7 @@ void setup() {
 void presentation()  
 {   
   // Node info
-  sendSketchInfo("Lighting", "1.1");
+  sendSketchInfo("Lighting", "1.2");
   // Light
   present(LIGHT_ID, S_LIGHT, "Light relay");
   // Temp
