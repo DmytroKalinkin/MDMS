@@ -1,6 +1,6 @@
 
 #define MY_PARENT_NODE_ID AUTO
-#define MY_NODE_ID AUTO
+#define MY_NODE_ID 6
 //#define MY_REPEATER_FEATURE // Enable repeater functionality for this node
 
 // Flash options

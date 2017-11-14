@@ -153,7 +153,6 @@ void receive(const MyMessage &message) {
      // Store state in eeprom
      saveState(RELAY_2_ID, message.getBool());
   } 
-
    // TODO Send presentation to button nodes
    // TODO Command button key
 }

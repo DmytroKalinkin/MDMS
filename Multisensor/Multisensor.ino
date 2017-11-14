@@ -3,6 +3,7 @@
 
 // Enable and select radio type attached
 #define MY_RADIO_NRF24
+//#define MY_RF24_PA_LEVEL RF24_PA_MAX
 //#define MY_RADIO_RFM69 
 
 #define MY_NODE_ID AUTO
@@ -15,7 +16,7 @@
 #define SensSI7021 // 18% - 24%
 #define SensBH1750 // 13% - 21%
 //#define SensDHT // 18% - 22%
-#define SensDS18B20 // 21% - 20%
+//#define SensDS18B20 // 21% - 20%
 //#define SensKey
 
 // Flash options
@@ -68,9 +69,9 @@
 
 #define SKETCH_NAME "MDMSensor Multisensor"
 #define SKETCH_MAJOR_VER "1"
-#define SKETCH_MINOR_VER "3"
+#define SKETCH_MINOR_VER "1"
 
-unsigned long SEND_FREQUENCY = (60*1000ul); // Minimum time between send (in milliseconds). We don't wnat to spam the gateway. 
+unsigned long SEND_FREQUENCY = (15*1000ul); // Minimum time between send (in milliseconds). We don't wnat to spam the gateway. 
 
 #define POWER_PIN 6
 #define INIT_PIN A4
@@ -116,8 +117,8 @@ unsigned long SEND_FREQUENCY = (60*1000ul); // Minimum time between send (in mil
 //== DHT
 #ifdef SensDHT
   #define DHTPIN 5     // what digital pin we're connected to
-  //#define DHTTYPE DHT11   // DHT 11
-  #define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321
+  #define DHTTYPE DHT11   // DHT 11
+  //#define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321
   //#define DHTTYPE DHT21   // DHT 21 (AM2301)
 
   DHT dht(DHTPIN, DHTTYPE);
@@ -147,9 +148,14 @@ void before(){
   wdt_disable();
 
   Serial.begin(115200);
+
+/*
+  
   #ifdef DEBUG
     Serial.println("Start");
   #endif
+
+
 
   // Init adress from pin
   pinMode(INIT_PIN, INPUT); 
@@ -162,6 +168,7 @@ void before(){
       EEPROM.write(i, 0xff);
     } 
   }
+*/
 
   // Setup the buttons
   pinMode(POWER_PIN, OUTPUT);
@@ -171,7 +178,10 @@ void before(){
 
   // Power to sensors
   digitalWrite(POWER_PIN, LOW); 
-  
+
+
+
+ 
   //=== BMP
   #ifdef SensBMP180
     if (!bmp.begin()){
@@ -180,6 +190,9 @@ void before(){
       #endif
     }  
   #endif
+
+
+
 
   //=== si7021
   #ifdef SensSI7021
@@ -190,6 +203,9 @@ void before(){
     }
     
   #endif
+
+
+
 
   //=== BH1750
   #ifdef SensBH1750
@@ -204,11 +220,11 @@ void before(){
         Wire.read();        
     #endif    
   #endif
-  
-  //=== DHT  
-  #ifdef SensDHT
-    dht.begin();
-  #endif
+
+
+ 
+
+   
 
   //=== DS18B20
   #ifdef SensDS18B20
@@ -222,7 +238,8 @@ void before(){
       Serial.println("OTA FW update enabled");
     #endif
   #endif
-     
+
+
   wdt_enable(WDTO_8S); 
 }
 
