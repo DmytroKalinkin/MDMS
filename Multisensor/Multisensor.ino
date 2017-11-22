@@ -71,7 +71,7 @@
 #define SKETCH_MAJOR_VER "1"
 #define SKETCH_MINOR_VER "1"
 
-unsigned long SEND_FREQUENCY = (60*1000ul); // Minimum time between send (in milliseconds). We don't wnat to spam the gateway. 
+unsigned long SEND_FREQUENCY = (15*1000ul); // Minimum time between send (in milliseconds). We don't wnat to spam the gateway. 
 
 #define POWER_PIN 6
 #define INIT_PIN A4

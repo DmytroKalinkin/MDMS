@@ -1,3 +1,0 @@
-
-void WebServerInit();
-void WebServerHandle();
