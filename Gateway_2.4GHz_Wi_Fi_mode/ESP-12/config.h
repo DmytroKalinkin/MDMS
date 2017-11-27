@@ -1,5 +1,5 @@
 // WIFI
-#define WIFI_SSID "MDMS_AP"
+#define WIFI_SSID "MDMSAP"
 #define WIFI_PASS ""
 
 // WIFI Connect
